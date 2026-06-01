@@ -30,7 +30,10 @@ BANNER = r"""
 ██║     ███████╗██║ ╚████║██║  ██╗██║ ╚████║██║██║     ███████╗
 ╚═╝     ╚══════╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝     ╚══════╝
 """
-BANNER_LINES = [ln.rstrip() for ln in BANNER.strip("\n").splitlines()]
+_RAW_BANNER_LINES = BANNER.strip("\n").splitlines()
+_BANNER_W = max(len(ln) for ln in _RAW_BANNER_LINES)
+# pad every line to the same width so they all share ONE left margin
+BANNER_LINES = [ln.ljust(_BANNER_W) for ln in _RAW_BANNER_LINES]
 
 HELP = f"""penknife {__version__} - a tiny TUI launcher for your pentest toolkit
 
@@ -265,9 +268,10 @@ def draw_banner(win, width):
     bw = max(len(ln) for ln in BANNER_LINES)
     big = width >= bw + 2 and h >= len(BANNER_LINES) + 8
     if big:
+        left = max(0, (width - bw) // 2)  # ONE margin for every line
         y = 0
         for ln in BANNER_LINES:
-            safe_addstr(win, y, max(0, (width - len(ln)) // 2), ln, amber())
+            safe_addstr(win, y, left, ln, amber())
             y += 1
         sub = f"a tiny launcher for your toolkit  ·  v{__version__}"
         safe_addstr(win, y, max(0, (width - len(sub)) // 2), sub, curses.A_DIM)
