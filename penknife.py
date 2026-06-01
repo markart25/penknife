@@ -273,7 +273,7 @@ def draw_banner(win, width):
         for ln in BANNER_LINES:
             safe_addstr(win, y, left, ln, amber())
             y += 1
-        sub = f"a tiny launcher for your toolkit  ·  v{__version__}"
+        sub = f"a tiny launcher for your toolkit, made by markart25 on github  ·  v{__version__}"
         safe_addstr(win, y, max(0, (width - len(sub)) // 2), sub, curses.A_DIM)
         return y + 2  # blank line, then hint
     safe_addstr(win, 0, 1, "penknife", amber() | curses.A_BOLD)
