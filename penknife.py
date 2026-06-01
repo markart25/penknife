@@ -35,7 +35,7 @@ _BANNER_W = max(len(ln) for ln in _RAW_BANNER_LINES)
 # pad every line to the same width so they all share ONE left margin
 BANNER_LINES = [ln.ljust(_BANNER_W) for ln in _RAW_BANNER_LINES]
 
-HELP = f"""penknife {__version__} - a tiny TUI launcher for your pentest toolkit
+HELP = f"""penknife {__version__} - a tiny TUI launcher for your pentest toolkit, made by markart25 on github
 
 usage: penknife [options]
 
